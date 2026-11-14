@@ -10,10 +10,7 @@ from tools.job_analysis_tool import analyze_candidate_for_job
 # 1. Your CV File
 # =========================================
 
-CV_FILE_PATH = Path(
-    r"path for your CV file"
-)
-
+CV_FILE_PATH = Path(__file__).resolve().parent / "../cv/Bishoy_Amgad_CV.pdf"
 
 # =========================================
 # 2. Sample ML Engineer Job Description
