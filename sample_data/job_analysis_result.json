@@ -1,0 +1,1584 @@
+{
+    "candidate_profile": {
+        "name": "Bishoy Amgad",
+        "professional_summary": "4th-year Computer and Information Sciences student at Ain Shams University with a strong background in Machine Learning, Deep Learning, and Agentic AI, seeking a training opportunity in Generative AI to deepen expertise in LLMs, RAG systems, and multi-agent architectures through hands-on real-world applications.",
+        "education": [
+            {
+                "degree": "Bachelor’s in Computer and Information Sciences",
+                "institution": "Ain Shams University, Faculty of Computer and Information Sciences",
+                "field_of_study": "Computer and Information Sciences",
+                "graduation_year": null
+            }
+        ],
+        "experience": [],
+        "projects": [
+            {
+                "name": "Mini-RAG System",
+                "description": "Built a Retrieval-Augmented Generation pipeline with a FastAPI backend, MongoDB for metadata storage, Qdrant as the vector database, and Cohere embeddings for semantic search, including document ingestion, chunking, async file handling, and LLM‑based answer generation.",
+                "technologies": [
+                    "Python",
+                    "FastAPI",
+                    "LangChain",
+                    "Qdrant",
+                    "Cohere",
+                    "MongoDB"
+                ]
+            },
+            {
+                "name": "Job Hunt AI Agent",
+                "description": "Developed an AI agent that ingests a candidate’s CV, LinkedIn profile, and GitHub portfolio to automatically search and match relevant job opportunities, integrated with the Mini‑RAG system for data‑grounded responses.",
+                "technologies": [
+                    "Python",
+                    "CrewAI",
+                    "Web Automation"
+                ]
+            },
+            {
+                "name": "Multi-Modal RAG Platform",
+                "description": "Engineered a platform that ingests and indexes heterogeneous documents (PDF, Word, Excel, images) using OCR and multiple LangChain loaders, storing vectors in PostgreSQL with pgvector and exposing unified semantic search via a FastAPI backend.",
+                "technologies": [
+                    "Python",
+                    "LangGraph",
+                    "LangChain",
+                    "FastAPI",
+                    "OCR",
+                    "PostgreSQL",
+                    "pgvector"
+                ]
+            },
+            {
+                "name": "Loan Completion Status Prediction",
+                "description": "Built a 4‑class Random Forest classifier achieving 96.36% accuracy, using SMOTE for class balancing on a 1,810‑record dataset and deployed as an interactive Streamlit web app.",
+                "technologies": [
+                    "Python",
+                    "scikit-learn",
+                    "Pandas",
+                    "SMOTE"
+                ]
+            },
+            {
+                "name": "Emotion Detection from Text",
+                "description": "Created a multi‑class text classifier to detect emotions using NLTK preprocessing, TF‑IDF vectorization, and scikit‑learn models.",
+                "technologies": [
+                    "Python",
+                    "NLTK",
+                    "scikit-learn"
+                ]
+            },
+            {
+                "name": "Flower Image Classification",
+                "description": "Engineered a CNN model for image recognition with data augmentation, leveraging TensorFlow, Keras, and OpenCV for preprocessing and training.",
+                "technologies": [
+                    "Python",
+                    "TensorFlow",
+                    "Keras",
+                    "OpenCV"
+                ]
+            }
+        ],
+        "skills": [
+            {
+                "name": "C",
+                "category": "programming_language",
+                "evidence": [
+                    "Listed in the Skills section."
+                ]
+            },
+            {
+                "name": "C++",
+                "category": "programming_language",
+                "evidence": [
+                    "Listed in the Skills section."
+                ]
+            },
+            {
+                "name": "Python",
+                "category": "programming_language",
+                "evidence": [
+                    "Listed in the Skills section.",
+                    "Used in multiple projects."
+                ]
+            },
+            {
+                "name": "Java",
+                "category": "programming_language",
+                "evidence": [
+                    "Listed in the Skills section."
+                ]
+            },
+            {
+                "name": "SQL",
+                "category": "programming_language",
+                "evidence": [
+                    "Listed in the Skills section."
+                ]
+            },
+            {
+                "name": "Assembly",
+                "category": "programming_language",
+                "evidence": [
+                    "Listed in the Skills section."
+                ]
+            },
+            {
+                "name": "Agentic AI",
+                "category": "ai_concept",
+                "evidence": [
+                    "Listed in the Skills section."
+                ]
+            },
+            {
+                "name": "LLM Frameworks",
+                "category": "ai_concept",
+                "evidence": [
+                    "Listed in the Skills section."
+                ]
+            },
+            {
+                "name": "RAG (Retrieval-Augmented Generation)",
+                "category": "ai_concept",
+                "evidence": [
+                    "Listed in the Skills section."
+                ]
+            },
+            {
+                "name": "Multi-Agent Systems",
+                "category": "ai_concept",
+                "evidence": [
+                    "Listed in the Skills section."
+                ]
+            },
+            {
+                "name": "Generative AI",
+                "category": "ai_concept",
+                "evidence": [
+                    "Listed in the Skills section."
+                ]
+            },
+            {
+                "name": "EDA",
+                "category": "machine_learning",
+                "evidence": [
+                    "Listed in the Skills section."
+                ]
+            },
+            {
+                "name": "Feature Engineering",
+                "category": "machine_learning",
+                "evidence": [
+                    "Listed in the Skills section."
+                ]
+            },
+            {
+                "name": "Regression",
+                "category": "machine_learning",
+                "evidence": [
+                    "Listed in the Skills section."
+                ]
+            },
+            {
+                "name": "Classification",
+                "category": "machine_learning",
+                "evidence": [
+                    "Listed in the Skills section."
+                ]
+            },
+            {
+                "name": "Clustering",
+                "category": "machine_learning",
+                "evidence": [
+                    "Listed in the Skills section."
+                ]
+            },
+            {
+                "name": "Model Evaluation",
+                "category": "machine_learning",
+                "evidence": [
+                    "Listed in the Skills section."
+                ]
+            },
+            {
+                "name": "LangChain",
+                "category": "framework",
+                "evidence": [
+                    "Listed in the Skills section.",
+                    "Used in Mini‑RAG System and Multi‑Modal RAG Platform projects."
+                ]
+            },
+            {
+                "name": "LangGraph",
+                "category": "framework",
+                "evidence": [
+                    "Listed in the Skills section.",
+                    "Used in Multi‑Modal RAG Platform project."
+                ]
+            },
+            {
+                "name": "CrewAI",
+                "category": "framework",
+                "evidence": [
+                    "Listed in the Skills section.",
+                    "Used in Job Hunt AI Agent project."
+                ]
+            },
+            {
+                "name": "FastAPI",
+                "category": "framework",
+                "evidence": [
+                    "Listed in the Skills section.",
+                    "Used in Mini‑RAG System and Multi‑Modal RAG Platform projects."
+                ]
+            },
+            {
+                "name": "TensorFlow",
+                "category": "framework",
+                "evidence": [
+                    "Listed in the Skills section.",
+                    "Used in Flower Image Classification project."
+                ]
+            },
+            {
+                "name": "Keras",
+                "category": "framework",
+                "evidence": [
+                    "Listed in the Skills section.",
+                    "Used in Flower Image Classification project."
+                ]
+            },
+            {
+                "name": "NumPy",
+                "category": "library",
+                "evidence": [
+                    "Listed in the Skills section."
+                ]
+            },
+            {
+                "name": "Pandas",
+                "category": "library",
+                "evidence": [
+                    "Listed in the Skills section.",
+                    "Used in Loan Completion Status Prediction project."
+                ]
+            },
+            {
+                "name": "scikit-learn",
+                "category": "library",
+                "evidence": [
+                    "Listed in the Skills section.",
+                    "Used in Loan Completion Status Prediction, Emotion Detection from Text projects."
+                ]
+            },
+            {
+                "name": "Matplotlib",
+                "category": "library",
+                "evidence": [
+                    "Listed in the Skills section."
+                ]
+            },
+            {
+                "name": "Streamlit",
+                "category": "library",
+                "evidence": [
+                    "Listed in the Skills section.",
+                    "Used in Loan Completion Status Prediction project."
+                ]
+            },
+            {
+                "name": "OpenCV",
+                "category": "library",
+                "evidence": [
+                    "Listed in the Skills section.",
+                    "Used in Flower Image Classification project."
+                ]
+            },
+            {
+                "name": "NLTK",
+                "category": "library",
+                "evidence": [
+                    "Listed in the Skills section.",
+                    "Used in Emotion Detection from Text project."
+                ]
+            },
+            {
+                "name": "spaCy",
+                "category": "library",
+                "evidence": [
+                    "Listed in the Skills section."
+                ]
+            },
+            {
+                "name": "HuggingFace Transformers",
+                "category": "library",
+                "evidence": [
+                    "Listed in the Skills section."
+                ]
+            }
+        ]
+    },
+    "job_description": {
+        "job_title": "Machine Learning Engineer",
+        "company": "AI Solutions",
+        "location": "Cairo, Egypt",
+        "employment_type": "Full-time",
+        "job_summary": "We are looking for a Machine Learning Engineer to develop, train, evaluate, and deploy machine learning models for real-world applications.",
+        "responsibilities": [
+            "Build and train machine learning models.",
+            "Perform data preprocessing and feature engineering.",
+            "Evaluate models using appropriate performance metrics.",
+            "Develop deep learning solutions when required.",
+            "Collaborate with software engineers and data teams.",
+            "Optimize model performance.",
+            "Work with NLP and generative AI applications."
+        ],
+        "required_skills": [
+            {
+                "name": "Python",
+                "expected_level": null,
+                "evidence": [
+                    "Required Skills: Strong Python programming skills."
+                ]
+            },
+            {
+                "name": "Machine Learning fundamentals",
+                "expected_level": null,
+                "evidence": [
+                    "Required Skills: Machine Learning fundamentals."
+                ]
+            },
+            {
+                "name": "Data preprocessing",
+                "expected_level": null,
+                "evidence": [
+                    "Required Skills: Data preprocessing and feature engineering."
+                ]
+            },
+            {
+                "name": "Feature engineering",
+                "expected_level": null,
+                "evidence": [
+                    "Required Skills: Data preprocessing and feature engineering."
+                ]
+            },
+            {
+                "name": "Supervised Learning",
+                "expected_level": null,
+                "evidence": [
+                    "Required Skills: Supervised and Unsupervised Learning."
+                ]
+            },
+            {
+                "name": "Unsupervised Learning",
+                "expected_level": null,
+                "evidence": [
+                    "Required Skills: Supervised and Unsupervised Learning."
+                ]
+            },
+            {
+                "name": "Model evaluation",
+                "expected_level": null,
+                "evidence": [
+                    "Required Skills: Model evaluation and validation."
+                ]
+            },
+            {
+                "name": "Model validation",
+                "expected_level": null,
+                "evidence": [
+                    "Required Skills: Model evaluation and validation."
+                ]
+            },
+            {
+                "name": "Scikit-learn",
+                "expected_level": null,
+                "evidence": [
+                    "Required Skills: Scikit-learn."
+                ]
+            },
+            {
+                "name": "NumPy",
+                "expected_level": null,
+                "evidence": [
+                    "Required Skills: NumPy and Pandas."
+                ]
+            },
+            {
+                "name": "Pandas",
+                "expected_level": null,
+                "evidence": [
+                    "Required Skills: NumPy and Pandas."
+                ]
+            }
+        ],
+        "preferred_skills": [
+            {
+                "name": "Deep Learning",
+                "expected_level": null,
+                "evidence": [
+                    "Preferred Skills: Deep Learning."
+                ]
+            },
+            {
+                "name": "PyTorch",
+                "expected_level": null,
+                "evidence": [
+                    "Preferred Skills: PyTorch or TensorFlow."
+                ]
+            },
+            {
+                "name": "TensorFlow",
+                "expected_level": null,
+                "evidence": [
+                    "Preferred Skills: PyTorch or TensorFlow."
+                ]
+            },
+            {
+                "name": "Natural Language Processing",
+                "expected_level": null,
+                "evidence": [
+                    "Preferred Skills: Natural Language Processing."
+                ]
+            },
+            {
+                "name": "Large Language Models",
+                "expected_level": null,
+                "evidence": [
+                    "Preferred Skills: Large Language Models."
+                ]
+            },
+            {
+                "name": "Retrieval-Augmented Generation (RAG)",
+                "expected_level": null,
+                "evidence": [
+                    "Preferred Skills: Retrieval-Augmented Generation (RAG)."
+                ]
+            },
+            {
+                "name": "Docker",
+                "expected_level": null,
+                "evidence": [
+                    "Preferred Skills: Docker and FastAPI."
+                ]
+            },
+            {
+                "name": "FastAPI",
+                "expected_level": null,
+                "evidence": [
+                    "Preferred Skills: Docker and FastAPI."
+                ]
+            },
+            {
+                "name": "Cloud platforms",
+                "expected_level": null,
+                "evidence": [
+                    "Preferred Skills: Experience with cloud platforms."
+                ]
+            }
+        ],
+        "required_education": [
+            "Bachelor's degree in Computer Science, Artificial Intelligence, or a related field."
+        ],
+        "required_experience_years": 0,
+        "preferred_experience_years": null,
+        "qualifications": [
+            "Analytical thinking.",
+            "Problem-solving skills.",
+            "Ability to work in a team.",
+            "Good communication skills."
+        ],
+        "technologies": [
+            "Python",
+            "Scikit-learn",
+            "PyTorch",
+            "TensorFlow",
+            "Pandas",
+            "NumPy",
+            "FastAPI",
+            "Docker"
+        ],
+        "eligibility_requirements": [
+            "Ability to work full-time in Cairo."
+        ]
+    },
+    "candidate_skills": [
+        {
+            "name": "C",
+            "source": "candidate",
+            "importance": null,
+            "expected_level": null,
+            "evidence": [
+                "Listed in the Skills section."
+            ]
+        },
+        {
+            "name": "C++",
+            "source": "candidate",
+            "importance": null,
+            "expected_level": null,
+            "evidence": [
+                "Listed in the Skills section."
+            ]
+        },
+        {
+            "name": "Python",
+            "source": "candidate",
+            "importance": null,
+            "expected_level": null,
+            "evidence": [
+                "Listed in the Skills section.",
+                "Used in multiple projects.",
+                "Used in project: Mini-RAG System",
+                "Used in project: Job Hunt AI Agent",
+                "Used in project: Multi-Modal RAG Platform",
+                "Used in project: Loan Completion Status Prediction",
+                "Used in project: Emotion Detection from Text",
+                "Used in project: Flower Image Classification"
+            ]
+        },
+        {
+            "name": "Java",
+            "source": "candidate",
+            "importance": null,
+            "expected_level": null,
+            "evidence": [
+                "Listed in the Skills section."
+            ]
+        },
+        {
+            "name": "SQL",
+            "source": "candidate",
+            "importance": null,
+            "expected_level": null,
+            "evidence": [
+                "Listed in the Skills section."
+            ]
+        },
+        {
+            "name": "Assembly",
+            "source": "candidate",
+            "importance": null,
+            "expected_level": null,
+            "evidence": [
+                "Listed in the Skills section."
+            ]
+        },
+        {
+            "name": "Agentic AI",
+            "source": "candidate",
+            "importance": null,
+            "expected_level": null,
+            "evidence": [
+                "Listed in the Skills section."
+            ]
+        },
+        {
+            "name": "LLM Frameworks",
+            "source": "candidate",
+            "importance": null,
+            "expected_level": null,
+            "evidence": [
+                "Listed in the Skills section."
+            ]
+        },
+        {
+            "name": "RAG (Retrieval-Augmented Generation)",
+            "source": "candidate",
+            "importance": null,
+            "expected_level": null,
+            "evidence": [
+                "Listed in the Skills section."
+            ]
+        },
+        {
+            "name": "Multi-Agent Systems",
+            "source": "candidate",
+            "importance": null,
+            "expected_level": null,
+            "evidence": [
+                "Listed in the Skills section."
+            ]
+        },
+        {
+            "name": "Generative AI",
+            "source": "candidate",
+            "importance": null,
+            "expected_level": null,
+            "evidence": [
+                "Listed in the Skills section."
+            ]
+        },
+        {
+            "name": "EDA",
+            "source": "candidate",
+            "importance": null,
+            "expected_level": null,
+            "evidence": [
+                "Listed in the Skills section."
+            ]
+        },
+        {
+            "name": "Feature Engineering",
+            "source": "candidate",
+            "importance": null,
+            "expected_level": null,
+            "evidence": [
+                "Listed in the Skills section."
+            ]
+        },
+        {
+            "name": "Regression",
+            "source": "candidate",
+            "importance": null,
+            "expected_level": null,
+            "evidence": [
+                "Listed in the Skills section."
+            ]
+        },
+        {
+            "name": "Classification",
+            "source": "candidate",
+            "importance": null,
+            "expected_level": null,
+            "evidence": [
+                "Listed in the Skills section."
+            ]
+        },
+        {
+            "name": "Clustering",
+            "source": "candidate",
+            "importance": null,
+            "expected_level": null,
+            "evidence": [
+                "Listed in the Skills section."
+            ]
+        },
+        {
+            "name": "Model Evaluation",
+            "source": "candidate",
+            "importance": null,
+            "expected_level": null,
+            "evidence": [
+                "Listed in the Skills section."
+            ]
+        },
+        {
+            "name": "LangChain",
+            "source": "candidate",
+            "importance": null,
+            "expected_level": null,
+            "evidence": [
+                "Listed in the Skills section.",
+                "Used in Mini‑RAG System and Multi‑Modal RAG Platform projects.",
+                "Used in project: Mini-RAG System",
+                "Used in project: Multi-Modal RAG Platform"
+            ]
+        },
+        {
+            "name": "LangGraph",
+            "source": "candidate",
+            "importance": null,
+            "expected_level": null,
+            "evidence": [
+                "Listed in the Skills section.",
+                "Used in Multi‑Modal RAG Platform project.",
+                "Used in project: Multi-Modal RAG Platform"
+            ]
+        },
+        {
+            "name": "CrewAI",
+            "source": "candidate",
+            "importance": null,
+            "expected_level": null,
+            "evidence": [
+                "Listed in the Skills section.",
+                "Used in Job Hunt AI Agent project.",
+                "Used in project: Job Hunt AI Agent"
+            ]
+        },
+        {
+            "name": "FastAPI",
+            "source": "candidate",
+            "importance": null,
+            "expected_level": null,
+            "evidence": [
+                "Listed in the Skills section.",
+                "Used in Mini‑RAG System and Multi‑Modal RAG Platform projects.",
+                "Used in project: Mini-RAG System",
+                "Used in project: Multi-Modal RAG Platform"
+            ]
+        },
+        {
+            "name": "TensorFlow",
+            "source": "candidate",
+            "importance": null,
+            "expected_level": null,
+            "evidence": [
+                "Listed in the Skills section.",
+                "Used in Flower Image Classification project.",
+                "Used in project: Flower Image Classification"
+            ]
+        },
+        {
+            "name": "Keras",
+            "source": "candidate",
+            "importance": null,
+            "expected_level": null,
+            "evidence": [
+                "Listed in the Skills section.",
+                "Used in Flower Image Classification project.",
+                "Used in project: Flower Image Classification"
+            ]
+        },
+        {
+            "name": "NumPy",
+            "source": "candidate",
+            "importance": null,
+            "expected_level": null,
+            "evidence": [
+                "Listed in the Skills section."
+            ]
+        },
+        {
+            "name": "Pandas",
+            "source": "candidate",
+            "importance": null,
+            "expected_level": null,
+            "evidence": [
+                "Listed in the Skills section.",
+                "Used in Loan Completion Status Prediction project.",
+                "Used in project: Loan Completion Status Prediction"
+            ]
+        },
+        {
+            "name": "scikit-learn",
+            "source": "candidate",
+            "importance": null,
+            "expected_level": null,
+            "evidence": [
+                "Listed in the Skills section.",
+                "Used in Loan Completion Status Prediction, Emotion Detection from Text projects.",
+                "Used in project: Loan Completion Status Prediction",
+                "Used in project: Emotion Detection from Text"
+            ]
+        },
+        {
+            "name": "Matplotlib",
+            "source": "candidate",
+            "importance": null,
+            "expected_level": null,
+            "evidence": [
+                "Listed in the Skills section."
+            ]
+        },
+        {
+            "name": "Streamlit",
+            "source": "candidate",
+            "importance": null,
+            "expected_level": null,
+            "evidence": [
+                "Listed in the Skills section.",
+                "Used in Loan Completion Status Prediction project."
+            ]
+        },
+        {
+            "name": "OpenCV",
+            "source": "candidate",
+            "importance": null,
+            "expected_level": null,
+            "evidence": [
+                "Listed in the Skills section.",
+                "Used in Flower Image Classification project.",
+                "Used in project: Flower Image Classification"
+            ]
+        },
+        {
+            "name": "NLTK",
+            "source": "candidate",
+            "importance": null,
+            "expected_level": null,
+            "evidence": [
+                "Listed in the Skills section.",
+                "Used in Emotion Detection from Text project.",
+                "Used in project: Emotion Detection from Text"
+            ]
+        },
+        {
+            "name": "spaCy",
+            "source": "candidate",
+            "importance": null,
+            "expected_level": null,
+            "evidence": [
+                "Listed in the Skills section."
+            ]
+        },
+        {
+            "name": "HuggingFace Transformers",
+            "source": "candidate",
+            "importance": null,
+            "expected_level": null,
+            "evidence": [
+                "Listed in the Skills section."
+            ]
+        },
+        {
+            "name": "Qdrant",
+            "source": "candidate",
+            "importance": null,
+            "expected_level": null,
+            "evidence": [
+                "Used in project: Mini-RAG System"
+            ]
+        },
+        {
+            "name": "Cohere",
+            "source": "candidate",
+            "importance": null,
+            "expected_level": null,
+            "evidence": [
+                "Used in project: Mini-RAG System"
+            ]
+        },
+        {
+            "name": "MongoDB",
+            "source": "candidate",
+            "importance": null,
+            "expected_level": null,
+            "evidence": [
+                "Used in project: Mini-RAG System"
+            ]
+        },
+        {
+            "name": "Web Automation",
+            "source": "candidate",
+            "importance": null,
+            "expected_level": null,
+            "evidence": [
+                "Used in project: Job Hunt AI Agent"
+            ]
+        },
+        {
+            "name": "OCR",
+            "source": "candidate",
+            "importance": null,
+            "expected_level": null,
+            "evidence": [
+                "Used in project: Multi-Modal RAG Platform"
+            ]
+        },
+        {
+            "name": "PostgreSQL",
+            "source": "candidate",
+            "importance": null,
+            "expected_level": null,
+            "evidence": [
+                "Used in project: Multi-Modal RAG Platform"
+            ]
+        },
+        {
+            "name": "pgvector",
+            "source": "candidate",
+            "importance": null,
+            "expected_level": null,
+            "evidence": [
+                "Used in project: Multi-Modal RAG Platform"
+            ]
+        },
+        {
+            "name": "SMOTE",
+            "source": "candidate",
+            "importance": null,
+            "expected_level": null,
+            "evidence": [
+                "Used in project: Loan Completion Status Prediction"
+            ]
+        }
+    ],
+    "job_skills": [
+        {
+            "name": "Python",
+            "source": "job",
+            "importance": "required",
+            "expected_level": null,
+            "evidence": [
+                "Required Skills: Strong Python programming skills."
+            ]
+        },
+        {
+            "name": "Machine Learning fundamentals",
+            "source": "job",
+            "importance": "required",
+            "expected_level": null,
+            "evidence": [
+                "Required Skills: Machine Learning fundamentals."
+            ]
+        },
+        {
+            "name": "Data preprocessing",
+            "source": "job",
+            "importance": "required",
+            "expected_level": null,
+            "evidence": [
+                "Required Skills: Data preprocessing and feature engineering."
+            ]
+        },
+        {
+            "name": "Feature engineering",
+            "source": "job",
+            "importance": "required",
+            "expected_level": null,
+            "evidence": [
+                "Required Skills: Data preprocessing and feature engineering."
+            ]
+        },
+        {
+            "name": "Supervised Learning",
+            "source": "job",
+            "importance": "required",
+            "expected_level": null,
+            "evidence": [
+                "Required Skills: Supervised and Unsupervised Learning."
+            ]
+        },
+        {
+            "name": "Unsupervised Learning",
+            "source": "job",
+            "importance": "required",
+            "expected_level": null,
+            "evidence": [
+                "Required Skills: Supervised and Unsupervised Learning."
+            ]
+        },
+        {
+            "name": "Model evaluation",
+            "source": "job",
+            "importance": "required",
+            "expected_level": null,
+            "evidence": [
+                "Required Skills: Model evaluation and validation."
+            ]
+        },
+        {
+            "name": "Model validation",
+            "source": "job",
+            "importance": "required",
+            "expected_level": null,
+            "evidence": [
+                "Required Skills: Model evaluation and validation."
+            ]
+        },
+        {
+            "name": "Scikit-learn",
+            "source": "job",
+            "importance": "required",
+            "expected_level": null,
+            "evidence": [
+                "Required Skills: Scikit-learn."
+            ]
+        },
+        {
+            "name": "NumPy",
+            "source": "job",
+            "importance": "required",
+            "expected_level": null,
+            "evidence": [
+                "Required Skills: NumPy and Pandas."
+            ]
+        },
+        {
+            "name": "Pandas",
+            "source": "job",
+            "importance": "required",
+            "expected_level": null,
+            "evidence": [
+                "Required Skills: NumPy and Pandas."
+            ]
+        },
+        {
+            "name": "Deep Learning",
+            "source": "job",
+            "importance": "preferred",
+            "expected_level": null,
+            "evidence": [
+                "Preferred Skills: Deep Learning."
+            ]
+        },
+        {
+            "name": "PyTorch",
+            "source": "job",
+            "importance": "preferred",
+            "expected_level": null,
+            "evidence": [
+                "Preferred Skills: PyTorch or TensorFlow."
+            ]
+        },
+        {
+            "name": "TensorFlow",
+            "source": "job",
+            "importance": "preferred",
+            "expected_level": null,
+            "evidence": [
+                "Preferred Skills: PyTorch or TensorFlow."
+            ]
+        },
+        {
+            "name": "Natural Language Processing",
+            "source": "job",
+            "importance": "preferred",
+            "expected_level": null,
+            "evidence": [
+                "Preferred Skills: Natural Language Processing."
+            ]
+        },
+        {
+            "name": "Large Language Models",
+            "source": "job",
+            "importance": "preferred",
+            "expected_level": null,
+            "evidence": [
+                "Preferred Skills: Large Language Models."
+            ]
+        },
+        {
+            "name": "Retrieval-Augmented Generation (RAG)",
+            "source": "job",
+            "importance": "preferred",
+            "expected_level": null,
+            "evidence": [
+                "Preferred Skills: Retrieval-Augmented Generation (RAG)."
+            ]
+        },
+        {
+            "name": "Docker",
+            "source": "job",
+            "importance": "preferred",
+            "expected_level": null,
+            "evidence": [
+                "Preferred Skills: Docker and FastAPI."
+            ]
+        },
+        {
+            "name": "FastAPI",
+            "source": "job",
+            "importance": "preferred",
+            "expected_level": null,
+            "evidence": [
+                "Preferred Skills: Docker and FastAPI."
+            ]
+        },
+        {
+            "name": "Cloud platforms",
+            "source": "job",
+            "importance": "preferred",
+            "expected_level": null,
+            "evidence": [
+                "Preferred Skills: Experience with cloud platforms."
+            ]
+        }
+    ],
+    "gap_analysis": {
+        "total_required_skills": 11,
+        "total_preferred_skills": 9,
+        "matched_skills": [
+            {
+                "skill_name": "Python",
+                "status": "matched",
+                "importance": "required",
+                "expected_level": null,
+                "priority": "high",
+                "candidate_evidence": [
+                    "Listed in the Skills section.",
+                    "Used in multiple projects.",
+                    "Used in project: Mini-RAG System",
+                    "Used in project: Job Hunt AI Agent",
+                    "Used in project: Multi-Modal RAG Platform",
+                    "Used in project: Loan Completion Status Prediction",
+                    "Used in project: Emotion Detection from Text",
+                    "Used in project: Flower Image Classification"
+                ],
+                "job_evidence": [
+                    "Required Skills: Strong Python programming skills."
+                ]
+            },
+            {
+                "skill_name": "Feature engineering",
+                "status": "matched",
+                "importance": "required",
+                "expected_level": null,
+                "priority": "high",
+                "candidate_evidence": [
+                    "Listed in the Skills section."
+                ],
+                "job_evidence": [
+                    "Required Skills: Data preprocessing and feature engineering."
+                ]
+            },
+            {
+                "skill_name": "Model evaluation",
+                "status": "matched",
+                "importance": "required",
+                "expected_level": null,
+                "priority": "high",
+                "candidate_evidence": [
+                    "Listed in the Skills section."
+                ],
+                "job_evidence": [
+                    "Required Skills: Model evaluation and validation."
+                ]
+            },
+            {
+                "skill_name": "Scikit-learn",
+                "status": "matched",
+                "importance": "required",
+                "expected_level": null,
+                "priority": "high",
+                "candidate_evidence": [
+                    "Listed in the Skills section.",
+                    "Used in Loan Completion Status Prediction, Emotion Detection from Text projects.",
+                    "Used in project: Loan Completion Status Prediction",
+                    "Used in project: Emotion Detection from Text"
+                ],
+                "job_evidence": [
+                    "Required Skills: Scikit-learn."
+                ]
+            },
+            {
+                "skill_name": "NumPy",
+                "status": "matched",
+                "importance": "required",
+                "expected_level": null,
+                "priority": "high",
+                "candidate_evidence": [
+                    "Listed in the Skills section."
+                ],
+                "job_evidence": [
+                    "Required Skills: NumPy and Pandas."
+                ]
+            },
+            {
+                "skill_name": "Pandas",
+                "status": "matched",
+                "importance": "required",
+                "expected_level": null,
+                "priority": "high",
+                "candidate_evidence": [
+                    "Listed in the Skills section.",
+                    "Used in Loan Completion Status Prediction project.",
+                    "Used in project: Loan Completion Status Prediction"
+                ],
+                "job_evidence": [
+                    "Required Skills: NumPy and Pandas."
+                ]
+            },
+            {
+                "skill_name": "TensorFlow",
+                "status": "matched",
+                "importance": "preferred",
+                "expected_level": null,
+                "priority": "medium",
+                "candidate_evidence": [
+                    "Listed in the Skills section.",
+                    "Used in Flower Image Classification project.",
+                    "Used in project: Flower Image Classification"
+                ],
+                "job_evidence": [
+                    "Preferred Skills: PyTorch or TensorFlow."
+                ]
+            },
+            {
+                "skill_name": "FastAPI",
+                "status": "matched",
+                "importance": "preferred",
+                "expected_level": null,
+                "priority": "medium",
+                "candidate_evidence": [
+                    "Listed in the Skills section.",
+                    "Used in Mini‑RAG System and Multi‑Modal RAG Platform projects.",
+                    "Used in project: Mini-RAG System",
+                    "Used in project: Multi-Modal RAG Platform"
+                ],
+                "job_evidence": [
+                    "Preferred Skills: Docker and FastAPI."
+                ]
+            }
+        ],
+        "missing_skills": [
+            {
+                "skill_name": "Machine Learning fundamentals",
+                "status": "not_found_in_cv",
+                "importance": "required",
+                "expected_level": null,
+                "priority": "high",
+                "candidate_evidence": [],
+                "job_evidence": [
+                    "Required Skills: Machine Learning fundamentals."
+                ]
+            },
+            {
+                "skill_name": "Data preprocessing",
+                "status": "not_found_in_cv",
+                "importance": "required",
+                "expected_level": null,
+                "priority": "high",
+                "candidate_evidence": [],
+                "job_evidence": [
+                    "Required Skills: Data preprocessing and feature engineering."
+                ]
+            },
+            {
+                "skill_name": "Supervised Learning",
+                "status": "not_found_in_cv",
+                "importance": "required",
+                "expected_level": null,
+                "priority": "high",
+                "candidate_evidence": [],
+                "job_evidence": [
+                    "Required Skills: Supervised and Unsupervised Learning."
+                ]
+            },
+            {
+                "skill_name": "Unsupervised Learning",
+                "status": "not_found_in_cv",
+                "importance": "required",
+                "expected_level": null,
+                "priority": "high",
+                "candidate_evidence": [],
+                "job_evidence": [
+                    "Required Skills: Supervised and Unsupervised Learning."
+                ]
+            },
+            {
+                "skill_name": "Model validation",
+                "status": "not_found_in_cv",
+                "importance": "required",
+                "expected_level": null,
+                "priority": "high",
+                "candidate_evidence": [],
+                "job_evidence": [
+                    "Required Skills: Model evaluation and validation."
+                ]
+            },
+            {
+                "skill_name": "Deep Learning",
+                "status": "not_found_in_cv",
+                "importance": "preferred",
+                "expected_level": null,
+                "priority": "medium",
+                "candidate_evidence": [],
+                "job_evidence": [
+                    "Preferred Skills: Deep Learning."
+                ]
+            },
+            {
+                "skill_name": "PyTorch",
+                "status": "not_found_in_cv",
+                "importance": "preferred",
+                "expected_level": null,
+                "priority": "medium",
+                "candidate_evidence": [],
+                "job_evidence": [
+                    "Preferred Skills: PyTorch or TensorFlow."
+                ]
+            },
+            {
+                "skill_name": "Natural Language Processing",
+                "status": "not_found_in_cv",
+                "importance": "preferred",
+                "expected_level": null,
+                "priority": "medium",
+                "candidate_evidence": [],
+                "job_evidence": [
+                    "Preferred Skills: Natural Language Processing."
+                ]
+            },
+            {
+                "skill_name": "Large Language Models",
+                "status": "not_found_in_cv",
+                "importance": "preferred",
+                "expected_level": null,
+                "priority": "medium",
+                "candidate_evidence": [],
+                "job_evidence": [
+                    "Preferred Skills: Large Language Models."
+                ]
+            },
+            {
+                "skill_name": "Retrieval-Augmented Generation (RAG)",
+                "status": "not_found_in_cv",
+                "importance": "preferred",
+                "expected_level": null,
+                "priority": "medium",
+                "candidate_evidence": [],
+                "job_evidence": [
+                    "Preferred Skills: Retrieval-Augmented Generation (RAG)."
+                ]
+            },
+            {
+                "skill_name": "Docker",
+                "status": "not_found_in_cv",
+                "importance": "preferred",
+                "expected_level": null,
+                "priority": "medium",
+                "candidate_evidence": [],
+                "job_evidence": [
+                    "Preferred Skills: Docker and FastAPI."
+                ]
+            },
+            {
+                "skill_name": "Cloud platforms",
+                "status": "not_found_in_cv",
+                "importance": "preferred",
+                "expected_level": null,
+                "priority": "medium",
+                "candidate_evidence": [],
+                "job_evidence": [
+                    "Preferred Skills: Experience with cloud platforms."
+                ]
+            }
+        ]
+    },
+    "interview_plan": {
+        "job_title": "Machine Learning Engineer",
+        "total_questions": 20,
+        "planned_skills": [
+            {
+                "skill_name": "Python",
+                "priority": "high",
+                "questions_count": 1,
+                "initial_difficulty": "medium",
+                "difficulty_range": [
+                    "easy",
+                    "medium",
+                    "hard"
+                ],
+                "reason": "The skill appears in the candidate CV. Interview questions will verify the candidate's actual understanding."
+            },
+            {
+                "skill_name": "Feature engineering",
+                "priority": "high",
+                "questions_count": 1,
+                "initial_difficulty": "medium",
+                "difficulty_range": [
+                    "easy",
+                    "medium",
+                    "hard"
+                ],
+                "reason": "The skill appears in the candidate CV. Interview questions will verify the candidate's actual understanding."
+            },
+            {
+                "skill_name": "Model evaluation",
+                "priority": "high",
+                "questions_count": 1,
+                "initial_difficulty": "medium",
+                "difficulty_range": [
+                    "easy",
+                    "medium",
+                    "hard"
+                ],
+                "reason": "The skill appears in the candidate CV. Interview questions will verify the candidate's actual understanding."
+            },
+            {
+                "skill_name": "Scikit-learn",
+                "priority": "high",
+                "questions_count": 1,
+                "initial_difficulty": "medium",
+                "difficulty_range": [
+                    "easy",
+                    "medium",
+                    "hard"
+                ],
+                "reason": "The skill appears in the candidate CV. Interview questions will verify the candidate's actual understanding."
+            },
+            {
+                "skill_name": "NumPy",
+                "priority": "high",
+                "questions_count": 1,
+                "initial_difficulty": "medium",
+                "difficulty_range": [
+                    "easy",
+                    "medium",
+                    "hard"
+                ],
+                "reason": "The skill appears in the candidate CV. Interview questions will verify the candidate's actual understanding."
+            },
+            {
+                "skill_name": "Pandas",
+                "priority": "high",
+                "questions_count": 1,
+                "initial_difficulty": "medium",
+                "difficulty_range": [
+                    "easy",
+                    "medium",
+                    "hard"
+                ],
+                "reason": "The skill appears in the candidate CV. Interview questions will verify the candidate's actual understanding."
+            },
+            {
+                "skill_name": "TensorFlow",
+                "priority": "medium",
+                "questions_count": 1,
+                "initial_difficulty": "medium",
+                "difficulty_range": [
+                    "easy",
+                    "medium",
+                    "hard"
+                ],
+                "reason": "The skill appears in the candidate CV. Interview questions will verify the candidate's actual understanding."
+            },
+            {
+                "skill_name": "FastAPI",
+                "priority": "medium",
+                "questions_count": 1,
+                "initial_difficulty": "medium",
+                "difficulty_range": [
+                    "easy",
+                    "medium",
+                    "hard"
+                ],
+                "reason": "The skill appears in the candidate CV. Interview questions will verify the candidate's actual understanding."
+            },
+            {
+                "skill_name": "Machine Learning fundamentals",
+                "priority": "high",
+                "questions_count": 1,
+                "initial_difficulty": "easy",
+                "difficulty_range": [
+                    "easy",
+                    "medium",
+                    "hard"
+                ],
+                "reason": "The skill was not found in the CV. Interview questions will assess whether the candidate has this knowledge."
+            },
+            {
+                "skill_name": "Data preprocessing",
+                "priority": "high",
+                "questions_count": 1,
+                "initial_difficulty": "easy",
+                "difficulty_range": [
+                    "easy",
+                    "medium",
+                    "hard"
+                ],
+                "reason": "The skill was not found in the CV. Interview questions will assess whether the candidate has this knowledge."
+            },
+            {
+                "skill_name": "Supervised Learning",
+                "priority": "high",
+                "questions_count": 1,
+                "initial_difficulty": "easy",
+                "difficulty_range": [
+                    "easy",
+                    "medium",
+                    "hard"
+                ],
+                "reason": "The skill was not found in the CV. Interview questions will assess whether the candidate has this knowledge."
+            },
+            {
+                "skill_name": "Unsupervised Learning",
+                "priority": "high",
+                "questions_count": 1,
+                "initial_difficulty": "easy",
+                "difficulty_range": [
+                    "easy",
+                    "medium",
+                    "hard"
+                ],
+                "reason": "The skill was not found in the CV. Interview questions will assess whether the candidate has this knowledge."
+            },
+            {
+                "skill_name": "Model validation",
+                "priority": "high",
+                "questions_count": 1,
+                "initial_difficulty": "easy",
+                "difficulty_range": [
+                    "easy",
+                    "medium",
+                    "hard"
+                ],
+                "reason": "The skill was not found in the CV. Interview questions will assess whether the candidate has this knowledge."
+            },
+            {
+                "skill_name": "Deep Learning",
+                "priority": "medium",
+                "questions_count": 1,
+                "initial_difficulty": "easy",
+                "difficulty_range": [
+                    "easy",
+                    "medium",
+                    "hard"
+                ],
+                "reason": "The skill was not found in the CV. Interview questions will assess whether the candidate has this knowledge."
+            },
+            {
+                "skill_name": "PyTorch",
+                "priority": "medium",
+                "questions_count": 1,
+                "initial_difficulty": "easy",
+                "difficulty_range": [
+                    "easy",
+                    "medium",
+                    "hard"
+                ],
+                "reason": "The skill was not found in the CV. Interview questions will assess whether the candidate has this knowledge."
+            },
+            {
+                "skill_name": "Natural Language Processing",
+                "priority": "medium",
+                "questions_count": 1,
+                "initial_difficulty": "easy",
+                "difficulty_range": [
+                    "easy",
+                    "medium",
+                    "hard"
+                ],
+                "reason": "The skill was not found in the CV. Interview questions will assess whether the candidate has this knowledge."
+            },
+            {
+                "skill_name": "Large Language Models",
+                "priority": "medium",
+                "questions_count": 1,
+                "initial_difficulty": "easy",
+                "difficulty_range": [
+                    "easy",
+                    "medium",
+                    "hard"
+                ],
+                "reason": "The skill was not found in the CV. Interview questions will assess whether the candidate has this knowledge."
+            },
+            {
+                "skill_name": "Retrieval-Augmented Generation (RAG)",
+                "priority": "medium",
+                "questions_count": 1,
+                "initial_difficulty": "easy",
+                "difficulty_range": [
+                    "easy",
+                    "medium",
+                    "hard"
+                ],
+                "reason": "The skill was not found in the CV. Interview questions will assess whether the candidate has this knowledge."
+            },
+            {
+                "skill_name": "Docker",
+                "priority": "medium",
+                "questions_count": 1,
+                "initial_difficulty": "easy",
+                "difficulty_range": [
+                    "easy",
+                    "medium",
+                    "hard"
+                ],
+                "reason": "The skill was not found in the CV. Interview questions will assess whether the candidate has this knowledge."
+            },
+            {
+                "skill_name": "Cloud platforms",
+                "priority": "medium",
+                "questions_count": 1,
+                "initial_difficulty": "easy",
+                "difficulty_range": [
+                    "easy",
+                    "medium",
+                    "hard"
+                ],
+                "reason": "The skill was not found in the CV. Interview questions will assess whether the candidate has this knowledge."
+            }
+        ]
+    }
+}
