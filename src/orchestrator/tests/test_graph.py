@@ -37,8 +37,21 @@ def run(graph, tid="t", answer="a reasonably long answer about the topic at hand
 
 def test_full_flow_with_mocks():
     state, n = run(build_graph(mock_agents()))
+
+    main_questions = [
+        item for item in state["history"]
+        if item["question"].get("question_type", "main") == "main"
+    ]
+
+    follow_up_questions = [
+        item for item in state["history"]
+        if item["question"].get("question_type") == "follow_up"
+    ]
+
     assert state["status"] == "completed"
-    assert n == state["plan"]["total_questions"] == len(state["history"]) == 8
+    assert len(main_questions) == state["plan"]["total_questions"] == 8
+    assert len(state["history"]) == n
+    assert len(follow_up_questions) <= 8
     assert set(state["skill_scores"]) == {"Python", "Machine Learning", "Docker"}
     assert "markdown" in state["report"]
     assert state["errors"] == []
@@ -92,7 +105,8 @@ def test_evaluation_total_failure_falls_back():
 
 class BrokenInterview:
     def next_question(self, *a): raise RuntimeError("boom")
-
+    def follow_up_question(self, *a):
+        return None
 
 def test_interview_failure_uses_fallback_questions():
     state, n = run(build_graph(mock_agents(interview=BrokenInterview())), "i")
@@ -149,19 +163,46 @@ def test_api_flow():
 
 def test_single_interview_endpoint_end_to_end():
     from orchestrator import api
+
     api._graph = build_graph(mock_agents())
     c = TestClient(api.app)
-    r = c.post("/interview", data={"job_description": "jd", "cv_text": "cv"}).json()
+
+    r = c.post(
+        "/interview",
+        data={"job_description": "jd", "cv_text": "cv"}
+    ).json()
+
     sid, steps = r["session_id"], 0
     assert r["done"] is False and r["question"]
+
     while not r["done"]:
-        r = c.post("/interview", data={"session_id": sid, "answer": "a decent answer here"}).json()
+        r = c.post(
+            "/interview",
+            data={"session_id": sid, "answer": "a decent answer here"}
+        ).json()
         steps += 1
-    assert steps == 8 and r["status"] == "completed" and r["question"] is None
-    assert r["result"]["report"]["markdown"] and r["result"]["learning"]["text"]
-    assert c.post("/interview", data={"job_description": "jd"}).status_code == 422  # no CV
-    r2 = c.post("/interview", data={"job_description": "jd", "cv_text": "cv"}).json()
-    r2 = c.post("/interview", data={"session_id": r2["session_id"], "finish": "true"}).json()
+
+    assert steps >= 8
+    assert r["status"] == "completed"
+    assert r["question"] is None
+    assert r["result"]["report"]["markdown"]
+    assert r["result"]["learning"]["text"]
+
+    assert c.post(
+        "/interview",
+        data={"job_description": "jd"}
+    ).status_code == 422  # no CV
+
+    r2 = c.post(
+        "/interview",
+        data={"job_description": "jd", "cv_text": "cv"}
+    ).json()
+
+    r2 = c.post(
+        "/interview",
+        data={"session_id": r2["session_id"], "finish": "true"}
+    ).json()
+
     assert r2["done"] and r2["result"]["report"]
 
 
@@ -177,12 +218,217 @@ def test_learning_runs_after_report_and_receives_it():
 
 def test_llm_interview_writes_text_and_follows_plan():
     from orchestrator.agents.llm_interview import LLMInterview
+
     prompts = []
+
     def fake(system, user, schema):
         prompts.append(user)
         return schema(text=f"  Real question #{len(prompts)}?  ")
-    state, n = run(build_graph(mock_agents(interview=LLMInterview(generate=fake))), "l")
-    assert state["status"] == "completed" and n == 8
-    assert state["history"][0]["question"]["text"] == "Real question #1?"
-    assert "Real question #1?" in prompts[1]  # previous question passed to avoid repeats
-    assert [h["question"]["skill"] for h in state["history"]].count("Python") == 3
+
+    state, n = run(
+        build_graph(mock_agents(interview=LLMInterview(generate=fake))),
+        "l",
+    )
+
+    main_questions = [
+        h for h in state["history"]
+        if h["question"].get("question_type", "main") == "main"
+    ]
+
+    follow_up_questions = [
+        h for h in state["history"]
+        if h["question"].get("question_type") == "follow_up"
+    ]
+
+    assert state["status"] == "completed"
+    assert len(main_questions) == state["plan"]["total_questions"] == 8
+    assert len(state["history"]) == n
+    assert len(follow_up_questions) <= 8
+
+    assert main_questions[0]["question"]["text"] == "Real question #1?"
+    assert main_questions[0]["question"]["question_type"] == "main"
+    assert main_questions[0]["question"]["parent_question_id"] is None
+    assert "Real question #1?" in prompts[1]
+
+    assert [
+        h["question"]["skill"] for h in main_questions
+    ].count("Python") == 3
+
+
+def test_adaptive_difficulty_is_cumulative():
+    plan = mocks.MockAnalysis().analyze("", "")["interview_plan"]
+
+    history = [
+        {
+            "question": {
+                "skill": "Python",
+                "difficulty": "medium"
+            },
+            "evaluation": {"score": 9}
+        },
+        {
+            "question": {
+                "skill": "Python",
+                "difficulty": "hard"
+            },
+            "evaluation": {"score": 9}
+        }
+    ]
+
+    question = mocks.MockInterview().next_question(
+        plan, history, 9
+    )
+
+    assert question["difficulty"] == "hard"
+
+
+def test_adaptive_difficulty_decreases_cumulatively():
+    plan = mocks.MockAnalysis().analyze("", "")["interview_plan"]
+
+    history = [
+        {
+            "question": {
+                "skill": "Python",
+                "difficulty": "medium"
+            },
+            "evaluation": {"score": 2}
+        },
+        {
+            "question": {
+                "skill": "Python",
+                "difficulty": "easy"
+            },
+            "evaluation": {"score": 2}
+        }
+    ]
+
+    question = mocks.MockInterview().next_question(
+        plan, history, 2
+    )
+
+    assert question["difficulty"] == "easy"
+
+
+def test_llm_interview_retries_when_question_is_duplicate():
+    from orchestrator.agents.llm_interview import LLMInterview
+
+    plan = mocks.MockAnalysis().analyze("", "")["interview_plan"]
+
+    history = [
+        {
+            "question": {
+                "skill": "Python",
+                "text": "What is Python?"
+            },
+            "evaluation": {"score": 7}
+        }
+    ]
+
+    generated_questions = [
+        "  WHAT IS PYTHON?!  ",
+        "What are Python decorators?"
+    ]
+
+    calls = []
+
+    def fake_generate(system, user, schema):
+        calls.append(user)
+        return schema(text=generated_questions[len(calls) - 1])
+
+    agent = LLMInterview(generate=fake_generate)
+
+    result = agent.next_question(plan, history, None)
+
+    assert len(calls) == 2
+    assert result["text"] == "What are Python decorators?"
+    assert result["skill"] == "Python"
+
+
+
+def test_llm_interview_raises_error_after_three_duplicate_attempts():
+    from orchestrator.agents.llm_interview import LLMInterview
+
+    plan = mocks.MockAnalysis().analyze("", "")["interview_plan"]
+
+    history = [
+        {
+            "question": {
+                "skill": "Python",
+                "text": "What is Python?"
+            },
+            "evaluation": {"score": 7}
+        }
+    ]
+
+    calls = []
+
+    def fake_generate(system, user, schema):
+        calls.append(user)
+        return schema(text="What is Python?!")
+
+    agent = LLMInterview(generate=fake_generate)
+
+    with pytest.raises(RuntimeError, match="after 3 attempts"):
+        agent.next_question(plan, history, None)
+
+    assert len(calls) == 3
+
+
+def test_follow_up_score_does_not_update_last_score():
+    class DifferentScores:
+        def evaluate(self, question, answer):
+            if question.get("question_type") == "follow_up":
+                return {
+                    "score": 2.0,
+                    "feedback": "Follow-up feedback",
+                    "correct_points": [],
+                    "missing_points": ["Basic concept"],
+                }
+
+            return {
+                "score": 8.0,
+                "feedback": "Main question feedback",
+                "correct_points": ["Correct"],
+                "missing_points": ["Additional detail"],
+            }
+
+    state, _ = run(
+        build_graph(mock_agents(evaluation=DifferentScores())),
+        "follow-up-score-test",
+    )
+
+    follow_up_items = [
+        item for item in state["history"]
+        if item["question"].get("question_type") == "follow_up"
+    ]
+
+    assert follow_up_items
+    assert follow_up_items[0]["evaluation"]["score"] == 2.0
+    assert state["last_score"] == 8.0
+
+def test_llm_interview_uses_retrieved_context():
+    from orchestrator.agents.llm_interview import LLMInterview
+
+    plan = mocks.MockAnalysis().analyze("", "")["interview_plan"]
+    retrieved_contexts = []
+    prompts = []
+
+    def fake_retrieve(query):
+        retrieved_contexts.append(query)
+        return "Python context: decorators and generators."
+
+    def fake_generate(system, user, schema):
+        prompts.append(user)
+        return schema(text="What are Python decorators?")
+
+    agent = LLMInterview(
+        generate=fake_generate,
+        retrieve_context=fake_retrieve,
+    )
+
+    result = agent.next_question(plan, [], None)
+
+    assert result is not None
+    assert len(retrieved_contexts) == 1
+    assert "Skill: Python" in retrieved_contexts[0]
+    assert "Python context: decorators and generators." in prompts[0]

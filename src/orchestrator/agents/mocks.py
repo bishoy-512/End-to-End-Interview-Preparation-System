@@ -14,6 +14,10 @@ _LEVELS = ["easy", "medium", "hard", "expert"]
 def _skill_question_counts(history: list[dict[str, Any]]) -> dict[str, int]:
     counts: dict[str, int] = {}
     for item in history:
+        question = item["question"]
+        # Follow-up questions should not count toward the interview plan.
+        if question.get("question_type", "main") != "main":
+            continue
         skill = item["question"]["skill"]
         counts[skill] = counts.get(skill, 0) + 1
     return counts
@@ -64,6 +68,28 @@ class MockAnalysis:
             },
         }
 
+    
+
+def _adjust_difficulty(level, score, difficulty_range):
+        """Adjust difficulty based on the candidate's previous score."""
+        if not difficulty_range:
+            return level
+
+        idx = (
+            difficulty_range.index(level)
+            if level in difficulty_range
+            else 0
+        )
+
+        if score >= 7:
+            idx += 1
+        elif score < 4:
+            idx -= 1
+
+        # Keep the difficulty within the allowed range.
+        idx = max(0, min(len(difficulty_range) - 1, idx))
+
+        return difficulty_range[idx]
 
 def select_next(plan, history, last_score):
     """Which skill / difficulty is next? (walks the plan, adapts to last_score)
@@ -74,14 +100,32 @@ def select_next(plan, history, last_score):
             asked = counts.get(ps["skill_name"], 0)
             if asked >= ps["questions_count"]:
                 continue
+
             rng = ps.get("difficulty_range") or _LEVELS[:3]
             level = ps.get("initial_difficulty", "easy")
-            if asked and last_score is not None:
-                idx = rng.index(level) if level in rng else 0
-                # strong answer -> harder, weak answer -> easier
-                step = 1 if last_score >= 7 else -1 if last_score < 4 else 0
-                level = rng[max(0, min(len(rng) - 1, idx + step))]
+
+            skill_history = [
+                item for item in history
+                if item["question"]["skill"] == ps["skill_name"]
+                and item["question"].get("question_type", "main") == "main"
+            ]
+
+            for item in skill_history:
+                score = item.get("evaluation", {}).get("score")
+
+                if score is not None:
+                    level = _adjust_difficulty(level, score, rng)
+
+            if (
+                skill_history
+                and skill_history[-1].get("evaluation", {}).get("score") is None
+                and history[-1] is skill_history[-1]
+                and last_score is not None
+            ):
+                level = _adjust_difficulty(level, last_score, rng)
+
             return ps["skill_name"], level, asked + 1
+
         return None
 
 
@@ -97,9 +141,46 @@ class MockInterview:
             "skill": skill,
             "difficulty": level,
             "text": f"[mock/{level}] Question #{n} about {skill}?",
+            "question_type": "main",
+            "parent_question_id": None,
         }
 
+    def follow_up_question(self, question, answer, evaluation, history):
+        score = evaluation.get("score", 0)
+        missing_points = evaluation.get("missing_points", [])
 
+        # No follow-up is needed if there are no missing points.
+        if not missing_points:
+            return None
+
+        # Allow only one follow-up per main question.
+        for item in history:
+            previous_question = item["question"]
+
+            if previous_question.get("parent_question_id") == question["id"]:
+                return None
+
+        missing_point = missing_points[0]
+        skill = question["skill"]
+
+        if score <= 3:
+            difficulty = "easy"
+            text = f"Can you explain the basic idea of {missing_point}?"
+        elif score <= 6:
+            difficulty = "medium"
+            text = f"How would you apply {missing_point} in {skill}?"
+        else:
+            difficulty = "hard"
+            text = f"What are the challenges or trade-offs related to {missing_point}?"
+
+        return {
+            "id": f"{question['id']}_follow_up",
+            "skill": skill,
+            "difficulty": difficulty,
+            "text": f"[mock/{difficulty}] {text}",
+            "question_type": "follow_up",
+            "parent_question_id": question["id"],
+        }
 class MockEvaluation:
     def evaluate(self, question, answer):
         answer = (answer or "").strip()
