@@ -37,24 +37,50 @@ class RealAnalysis:
 
 
 _rag_lock = threading.Lock()
-_rag_agent = None
+_rag_bundle = None
+
+
+def _get_rag_bundle():
+    global _rag_bundle
+
+    with _rag_lock:
+        if _rag_bundle is None:
+            _add_to_path(RAG_DIR)
+            import rag_agent as rag
+
+            bm25, vector_store, chunks = rag.initialize_rag()
+            agent = rag.build_rag_agent(bm25, vector_store, chunks)
+
+            _rag_bundle = (
+                rag,
+                bm25,
+                vector_store,
+                chunks,
+                agent,
+            )
+
+    return _rag_bundle
 
 
 def _get_rag_agent():
-    """Build the RAG agent once (loads Chroma, BM25, CrossEncoder, Ollama)."""
-    global _rag_agent
-    with _rag_lock:
-        if _rag_agent is None:
-            _add_to_path(RAG_DIR)
-            import os
+    rag, _, _, _, agent = _get_rag_bundle()
+    return rag, agent
 
-            # rag_agent.py resolves jobs_info/ and chroma_db/ from its own file
-            import rag_agent as rag  # noqa: PLC0415
 
-            bm25, vector_store, chunks = rag.initialize_rag()
-            _rag_agent = (rag, rag.build_rag_agent(bm25, vector_store, chunks))
-            _ = os  # keep linters quiet
-    return _rag_agent
+def retrieve_interview_context(query: str) -> str:
+    rag, bm25, vector_store, chunks, _ = _get_rag_bundle()
+
+    context, _sources = rag.hybrid_search_context(
+        query,
+        bm25,
+        vector_store,
+        chunks,
+    )
+
+    return context
+
+
+
 
 
 class RealLearning:

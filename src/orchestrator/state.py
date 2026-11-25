@@ -24,6 +24,8 @@ class Question(TypedDict, total=False):
     skill: str
     difficulty: str  # easy | medium | hard | expert
     text: str
+    question_type: Literal["main", "follow_up"]
+    parent_question_id: str | None
 
 
 class Evaluation(TypedDict, total=False):

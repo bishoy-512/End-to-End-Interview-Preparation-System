@@ -22,6 +22,15 @@ class InterviewAgent(Protocol):
         """-> {id, skill, difficulty, text}, or None when the interview is over."""
 
 
+    def follow_up_question(
+        self,
+        question: dict[str, Any],
+        answer: str,
+        evaluation: dict[str, Any],
+        history: list[dict[str, Any]],
+    ) -> dict[str, Any] | None:
+        """Generate one targeted follow-up question based on the evaluation."""
+
 class EvaluationAgent(Protocol):
     def evaluate(self, question: dict[str, Any], answer: str) -> dict[str, Any]:
         """-> {score (0..10), feedback, correct_points, missing_points}"""
@@ -51,10 +60,19 @@ def build_agents() -> AgentSet:
     """Pick mock / real / llm implementation per agent from environment variables."""
     from . import llm_interview, mocks, real  # local import: real.py must stay lazy
 
+    
+
+
     def pick(var: str, mock_name: str, real_name: str, llm_name: str | None = None):
         mode = os.getenv(var, "mock").strip().lower()
+
         if mode == "llm" and llm_name:
+            if var == "ORCH_INTERVIEW":
+                return getattr(llm_interview, llm_name)(
+                    retrieve_context=real.retrieve_interview_context
+                )
             return getattr(llm_interview, llm_name)()
+
         if mode == "real":
             cls = getattr(real, real_name, None)
             if cls is None:
@@ -62,6 +80,7 @@ def build_agents() -> AgentSet:
                     f"{var}=real but agents/real.py has no class `{real_name}`."
                 )
             return cls()
+
         return getattr(mocks, mock_name)()
 
     return AgentSet(
@@ -71,3 +90,6 @@ def build_agents() -> AgentSet:
         learning=pick("ORCH_LEARNING", "MockLearning", "RealLearning"),
         report=pick("ORCH_REPORT", "MockReport", "RealReport"),
     )
+
+
+    
