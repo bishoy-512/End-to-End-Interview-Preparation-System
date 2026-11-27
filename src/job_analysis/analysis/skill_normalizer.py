@@ -1,65 +1,111 @@
-
+import json
 import re
+from functools import lru_cache
+from pathlib import Path
 
 from analysis.skill_extractor import SkillMention
 
+TAXONOMY_PATH = (
+    Path(__file__).resolve().parents[1] / "data" / "skills_taxonomy.json"
+)
 
-# Different names that refer to the same skill
-SKILL_ALIASES = {
-    "js": "JavaScript",
-    "javascript": "JavaScript",
+_IMPORTANCE_RANK = {"required": 2, "preferred": 1}
 
-    "py": "Python",
 
-    "ml": "Machine Learning",
-    "machine learning": "Machine Learning",
+@lru_cache(maxsize=1)
+def load_taxonomy() -> dict[str, dict]:
+    """Canonical skill -> {category, aliases, related}."""
+    with TAXONOMY_PATH.open(encoding="utf-8") as file:
+        return json.load(file)["skills"]
 
-    "react.js": "React",
-    "reactjs": "React",
 
-    "postgres": "PostgreSQL",
-    "postgresql": "PostgreSQL",
+def category_of(skill_name: str) -> str | None:
+    info = load_taxonomy().get(skill_name)
+    return info["category"] if info else None
 
-    "node.js": "Node.js",
-    "nodejs": "Node.js",
 
-    "ts": "TypeScript",
-    "typescript": "TypeScript",
+def related_skills(skill_name: str) -> list[str]:
+    info = load_taxonomy().get(skill_name)
+    return list(info["related"]) if info else []
 
-    "aws": "Amazon Web Services",
-}
+
+@lru_cache(maxsize=1)
+def _exact_aliases() -> dict[str, str]:
+    table = {}
+    for canonical, info in load_taxonomy().items():
+        table[canonical.lower()] = canonical
+        for alias in info["aliases"]:
+            table[alias.lower()] = canonical
+    return table
+
+
+@lru_cache(maxsize=1)
+def _alias_patterns() -> list[tuple[re.Pattern, str]]:
+    """Whole-word alias patterns, longest alias first ('machine learning' before 'ml')."""
+    pairs = []
+    for alias, canonical in _exact_aliases().items():
+        pattern = re.compile(
+            rf"(?<![a-z0-9+#.]){re.escape(alias)}(?![a-z0-9+#])"
+        )
+        pairs.append((len(alias), pattern, canonical))
+    pairs.sort(key=lambda item: item[0], reverse=True)
+    return [(pattern, canonical) for _, pattern, canonical in pairs]
+
+
+# Kept for backward compatibility with code that imports it.
+SKILL_ALIASES = dict(_exact_aliases())
 
 
 class SkillNormalizer:
 
     @staticmethod
     def _clean_name(skill_name: str) -> str:
+        return re.sub(r"\s+", " ", skill_name.strip().lower())
+
+    @classmethod
+    def normalize_skill_names(cls, skill_name: str) -> list[str]:
         """
-        Clean a skill name before checking its aliases.
+        Return the canonical skill names found in a raw skill name.
+
+        "Python programming skills" -> ["Python"]
+        "NumPy and Pandas"          -> ["NumPy", "Pandas"]
+        Unknown skills are kept as written, so nothing is dropped.
         """
+        cleaned = cls._clean_name(skill_name)
+        if not cleaned:
+            return []
 
-        cleaned = skill_name.strip().lower()
+        exact = _exact_aliases().get(cleaned)
+        if exact:
+            return [exact]
 
-        # Replace repeated whitespace with a single space
-        cleaned = re.sub(r"\s+", " ", cleaned)
+        remaining = cleaned
+        found: list[tuple[int, str]] = []
+        for pattern, canonical in _alias_patterns():
+            match = pattern.search(remaining)
+            if match:
+                found.append((match.start(), canonical))
+                # Blank out the match so shorter aliases cannot reuse it.
+                remaining = (
+                    remaining[: match.start()]
+                    + " " * (match.end() - match.start())
+                    + remaining[match.end():]
+                )
 
-        return cleaned
+        if not found:
+            return [skill_name.strip()]
+
+        names = []
+        for _, canonical in sorted(found):
+            if canonical not in names:
+                names.append(canonical)
+        return names
 
     @classmethod
     def normalize_skill_name(cls, skill_name: str) -> str:
-        """
-        Convert a skill name into its canonical name.
-        """
-
-        cleaned_name = cls._clean_name(skill_name)
-
-        if not cleaned_name:
-            return ""
-
-        return SKILL_ALIASES.get(
-            cleaned_name,
-            skill_name.strip()
-        )
+        """First canonical name for a raw skill name ('' when empty)."""
+        names = cls.normalize_skill_names(skill_name)
+        return names[0] if names else ""
 
     @classmethod
     def normalize_skills(
@@ -69,48 +115,34 @@ class SkillNormalizer:
         """
         Normalize skill names and merge duplicate mentions.
 
-        Skills are considered duplicates when they have the same
-        normalized name and the same source.
+        A raw name that holds several skills becomes several mentions.
+        Mentions are duplicates when they share the canonical name and source.
+        The strongest importance (required over preferred) is kept.
         """
-
-        normalized_skills = {}
+        merged: dict[tuple[str, str], SkillMention] = {}
 
         for skill in skills:
+            for name in cls.normalize_skill_names(skill.name):
+                key = (name.lower(), skill.source)
 
-            normalized_name = cls.normalize_skill_name(
-                skill.name
-            )
+                if key not in merged:
+                    merged[key] = skill.model_copy(
+                        update={
+                            "name": name,
+                            "evidence": list(skill.evidence),
+                        }
+                    )
+                    continue
 
-            if not normalized_name:
-                continue
-
-            key = (normalized_name.lower(), skill.source)
-
-            if key not in normalized_skills:
-                normalized_skills[key] = skill.model_copy(
-                    update={
-                        "name": normalized_name,
-                        "evidence": list(skill.evidence)
-                    }
+                existing = merged[key]
+                existing.evidence = list(
+                    dict.fromkeys(existing.evidence + skill.evidence)
                 )
 
-            else:
-                existing_skill = normalized_skills[key]
+                if _IMPORTANCE_RANK.get(skill.importance, 0) > _IMPORTANCE_RANK.get(existing.importance, 0):
+                    existing.importance = skill.importance
 
-                # Keep all evidence from duplicate mentions
-                existing_skill.evidence = list(
-                    dict.fromkeys(
-                        existing_skill.evidence + skill.evidence
-                    )
-                )
+                if existing.expected_level is None:
+                    existing.expected_level = skill.expected_level
 
-                # Keep the strongest available job metadata
-                if existing_skill.importance is None:
-                    existing_skill.importance = skill.importance
-
-                if existing_skill.expected_level is None:
-                    existing_skill.expected_level = (
-                        skill.expected_level
-                    )
-
-        return list(normalized_skills.values())
+        return list(merged.values())

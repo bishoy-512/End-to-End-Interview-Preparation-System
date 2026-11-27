@@ -1,0 +1,521 @@
+{
+  "skills": {
+    "Python": {
+      "category": "programming_language",
+      "aliases": [
+        "python",
+        "python3",
+        "python programming"
+      ],
+      "related": []
+    },
+    "C++": {
+      "category": "programming_language",
+      "aliases": [
+        "c++",
+        "cpp"
+      ],
+      "related": []
+    },
+    "Java": {
+      "category": "programming_language",
+      "aliases": [
+        "java"
+      ],
+      "related": []
+    },
+    "SQL": {
+      "category": "programming_language",
+      "aliases": [
+        "sql",
+        "t-sql",
+        "sql server",
+        "microsoft sql server",
+        "mysql",
+        "postgresql",
+        "postgres"
+      ],
+      "related": []
+    },
+    "JavaScript": {
+      "category": "programming_language",
+      "aliases": [
+        "javascript",
+        "js"
+      ],
+      "related": []
+    },
+    "TypeScript": {
+      "category": "programming_language",
+      "aliases": [
+        "typescript",
+        "ts"
+      ],
+      "related": []
+    },
+    "NumPy": {
+      "category": "library",
+      "aliases": [
+        "numpy"
+      ],
+      "related": []
+    },
+    "Pandas": {
+      "category": "library",
+      "aliases": [
+        "pandas"
+      ],
+      "related": []
+    },
+    "Scikit-learn": {
+      "category": "library",
+      "aliases": [
+        "scikit-learn",
+        "scikit learn",
+        "sklearn"
+      ],
+      "related": []
+    },
+    "Matplotlib": {
+      "category": "library",
+      "aliases": [
+        "matplotlib",
+        "seaborn"
+      ],
+      "related": []
+    },
+    "OpenCV": {
+      "category": "library",
+      "aliases": [
+        "opencv"
+      ],
+      "related": []
+    },
+    "TensorFlow": {
+      "category": "framework",
+      "aliases": [
+        "tensorflow"
+      ],
+      "related": [
+        "PyTorch",
+        "Keras",
+        "Deep Learning"
+      ]
+    },
+    "Keras": {
+      "category": "framework",
+      "aliases": [
+        "keras"
+      ],
+      "related": [
+        "TensorFlow",
+        "PyTorch",
+        "Deep Learning"
+      ]
+    },
+    "PyTorch": {
+      "category": "framework",
+      "aliases": [
+        "pytorch",
+        "torch"
+      ],
+      "related": [
+        "TensorFlow",
+        "Keras",
+        "Deep Learning"
+      ]
+    },
+    "Hugging Face": {
+      "category": "framework",
+      "aliases": [
+        "hugging face",
+        "huggingface",
+        "transformers library"
+      ],
+      "related": []
+    },
+    "LangChain": {
+      "category": "framework",
+      "aliases": [
+        "langchain"
+      ],
+      "related": []
+    },
+    "LangGraph": {
+      "category": "framework",
+      "aliases": [
+        "langgraph"
+      ],
+      "related": []
+    },
+    "FastAPI": {
+      "category": "framework",
+      "aliases": [
+        "fastapi"
+      ],
+      "related": [
+        "Flask",
+        "Django"
+      ]
+    },
+    "Flask": {
+      "category": "framework",
+      "aliases": [
+        "flask"
+      ],
+      "related": [
+        "FastAPI",
+        "Django"
+      ]
+    },
+    "Django": {
+      "category": "framework",
+      "aliases": [
+        "django"
+      ],
+      "related": [
+        "FastAPI",
+        "Flask"
+      ]
+    },
+    "React": {
+      "category": "framework",
+      "aliases": [
+        "react",
+        "react.js",
+        "reactjs"
+      ],
+      "related": []
+    },
+    "Node.js": {
+      "category": "framework",
+      "aliases": [
+        "node.js",
+        "nodejs",
+        "node"
+      ],
+      "related": []
+    },
+    "REST APIs": {
+      "category": "concept",
+      "aliases": [
+        "rest api",
+        "rest apis",
+        "restful api",
+        "restful apis",
+        "api development"
+      ],
+      "related": [
+        "FastAPI",
+        "Flask",
+        "Django"
+      ]
+    },
+    "Git": {
+      "category": "tool",
+      "aliases": [
+        "git",
+        "github",
+        "gitlab",
+        "version control",
+        "git & github",
+        "git and github"
+      ],
+      "related": []
+    },
+    "Docker": {
+      "category": "tool",
+      "aliases": [
+        "docker",
+        "containerization"
+      ],
+      "related": []
+    },
+    "Deployment": {
+      "category": "tool",
+      "aliases": [
+        "deployment",
+        "model deployment",
+        "mlops"
+      ],
+      "related": [
+        "Docker"
+      ]
+    },
+    "Cloud Platforms": {
+      "category": "platform",
+      "aliases": [
+        "cloud platforms",
+        "cloud platform",
+        "cloud",
+        "aws",
+        "amazon web services",
+        "azure",
+        "gcp",
+        "google cloud"
+      ],
+      "related": [
+        "Docker",
+        "Deployment"
+      ]
+    },
+    "Jupyter": {
+      "category": "tool",
+      "aliases": [
+        "jupyter",
+        "jupyter notebook",
+        "google colab",
+        "colab"
+      ],
+      "related": []
+    },
+    "Power BI": {
+      "category": "tool",
+      "aliases": [
+        "power bi",
+        "powerbi"
+      ],
+      "related": []
+    },
+    "Vector Databases": {
+      "category": "tool",
+      "aliases": [
+        "vector database",
+        "vector databases",
+        "vector db",
+        "chromadb",
+        "chroma",
+        "faiss",
+        "pinecone"
+      ],
+      "related": []
+    },
+    "Machine Learning": {
+      "category": "machine_learning",
+      "aliases": [
+        "machine learning",
+        "ml",
+        "ml fundamentals",
+        "supervised learning",
+        "unsupervised learning",
+        "supervised & unsupervised learning",
+        "classification",
+        "regression",
+        "model evaluation",
+        "model validation",
+        "model optimization & evaluation"
+      ],
+      "related": [
+        "Scikit-learn",
+        "Deep Learning"
+      ]
+    },
+    "Deep Learning": {
+      "category": "ai_concept",
+      "aliases": [
+        "deep learning",
+        "neural network",
+        "neural networks",
+        "neural network architectures",
+        "dl"
+      ],
+      "related": [
+        "TensorFlow",
+        "PyTorch",
+        "Keras",
+        "CNN",
+        "RNN",
+        "LSTM"
+      ]
+    },
+    "CNN": {
+      "category": "ai_concept",
+      "aliases": [
+        "cnn",
+        "cnns",
+        "convolutional neural network",
+        "convolutional neural networks"
+      ],
+      "related": []
+    },
+    "RNN": {
+      "category": "ai_concept",
+      "aliases": [
+        "rnn",
+        "rnns",
+        "recurrent neural network"
+      ],
+      "related": []
+    },
+    "LSTM": {
+      "category": "ai_concept",
+      "aliases": [
+        "lstm",
+        "lstms"
+      ],
+      "related": []
+    },
+    "Transformers": {
+      "category": "ai_concept",
+      "aliases": [
+        "transformer",
+        "transformers",
+        "transformer architecture",
+        "self-attention",
+        "bert",
+        "gpt"
+      ],
+      "related": []
+    },
+    "Natural Language Processing": {
+      "category": "ai_concept",
+      "aliases": [
+        "natural language processing",
+        "nlp"
+      ],
+      "related": [
+        "Transformers",
+        "Hugging Face"
+      ]
+    },
+    "Computer Vision": {
+      "category": "ai_concept",
+      "aliases": [
+        "computer vision",
+        "image classification",
+        "face recognition"
+      ],
+      "related": [
+        "OpenCV",
+        "CNN"
+      ]
+    },
+    "Large Language Models": {
+      "category": "ai_concept",
+      "aliases": [
+        "large language model",
+        "large language models",
+        "llm",
+        "llms",
+        "generative ai",
+        "gen ai"
+      ],
+      "related": [
+        "Transformers",
+        "LangChain",
+        "Hugging Face"
+      ]
+    },
+    "RAG": {
+      "category": "ai_concept",
+      "aliases": [
+        "rag",
+        "retrieval-augmented generation",
+        "retrieval augmented generation",
+        "rag architectures",
+        "rag pipelines",
+        "rag systems"
+      ],
+      "related": []
+    },
+    "Prompt Engineering": {
+      "category": "ai_concept",
+      "aliases": [
+        "prompt engineering",
+        "prompting"
+      ],
+      "related": []
+    },
+    "AI Agents": {
+      "category": "ai_concept",
+      "aliases": [
+        "ai agent",
+        "ai agents",
+        "agents",
+        "agentic ai"
+      ],
+      "related": [
+        "LangGraph",
+        "LangChain"
+      ]
+    },
+    "Data Preprocessing": {
+      "category": "ai_concept",
+      "aliases": [
+        "data preprocessing",
+        "feature engineering",
+        "data cleaning",
+        "data preparation",
+        "data augmentation",
+        "data manipulation",
+        "exploratory data analysis",
+        "eda"
+      ],
+      "related": [
+        "Pandas"
+      ]
+    },
+    "Statistics": {
+      "category": "ai_concept",
+      "aliases": [
+        "statistics",
+        "statistical analysis",
+        "probability",
+        "spss",
+        "hypothesis testing"
+      ],
+      "related": []
+    },
+    "Data Structures & Algorithms": {
+      "category": "ai_concept",
+      "aliases": [
+        "data structures",
+        "algorithms",
+        "data structures and algorithms",
+        "dsa"
+      ],
+      "related": []
+    },
+    "Object-Oriented Programming": {
+      "category": "ai_concept",
+      "aliases": [
+        "oop",
+        "object-oriented programming",
+        "object oriented programming",
+        "object-oriented design"
+      ],
+      "related": [
+        "Java",
+        "C++"
+      ]
+    },
+    "Problem Solving": {
+      "category": "soft_skill",
+      "aliases": [
+        "problem solving",
+        "problem-solving",
+        "analytical skills",
+        "analytical thinking"
+      ],
+      "related": []
+    },
+    "Communication": {
+      "category": "soft_skill",
+      "aliases": [
+        "communication",
+        "communication skills"
+      ],
+      "related": []
+    },
+    "Teamwork": {
+      "category": "soft_skill",
+      "aliases": [
+        "teamwork",
+        "collaboration",
+        "team player",
+        "ability to work in a team"
+      ],
+      "related": []
+    }
+  }
+}

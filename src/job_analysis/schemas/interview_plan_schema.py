@@ -64,6 +64,11 @@ class InterviewPlan(BaseModel):
         description="Skills selected for interview assessment."
     )
 
+    not_covered: list[str] = Field(
+        default_factory=list,
+        description="Skills that did not fit the question budget."
+    )
+
     @model_validator(mode="after")
     def validate_question_count(self):
         allocated_questions = sum(

@@ -1,13 +1,17 @@
-
 from pydantic import BaseModel, Field
 
 from analysis.skill_extractor import SkillMention
+from analysis.skill_normalizer import related_skills
+
+IMPORTANCE_WEIGHT = {"required": 3.0, "preferred": 1.0}
+STATUS_CREDIT = {"matched": 1.0, "partial": 0.5, "not_found_in_cv": 0.0}
 
 
 class SkillGap(BaseModel):
     skill_name: str
 
-    status: str  # "matched" or "not_found_in_cv"
+    # "matched", "partial" (only related skills on the CV) or "not_found_in_cv"
+    status: str
 
     importance: str  # "required" or "preferred"
 
@@ -37,6 +41,14 @@ class GapAnalysis(BaseModel):
         default_factory=list
     )
 
+    # New: skills the CV only covers through related skills.
+    partial_skills: list[SkillGap] = Field(
+        default_factory=list
+    )
+
+    # New: weighted match percentage (required x3, preferred x1, partial 0.5).
+    match_score: float = 0.0
+
 
 class GapAnalyzer:
 
@@ -46,7 +58,6 @@ class GapAnalyzer:
         job_skills: list[SkillMention]
     ) -> GapAnalysis:
 
-        # Build a lookup for candidate skills
         candidate_skill_lookup = {
             skill.name.strip().lower(): skill
             for skill in candidate_skills
@@ -54,10 +65,13 @@ class GapAnalyzer:
         }
 
         matched_skills = []
+        partial_skills = []
         missing_skills = []
 
         total_required = 0
         total_preferred = 0
+        weight_total = 0.0
+        weight_earned = 0.0
 
         for job_skill in job_skills:
 
@@ -75,42 +89,58 @@ class GapAnalyzer:
                 total_preferred += 1
                 priority = "medium"
 
-            # Check whether the candidate has CV evidence
             candidate_skill = candidate_skill_lookup.get(
                 skill_name.strip().lower()
             )
 
             if candidate_skill:
-
-                result = SkillGap(
-                    skill_name=skill_name,
-                    status="matched",
-                    importance=importance,
-                    expected_level=job_skill.expected_level,
-                    priority=priority,
-                    candidate_evidence=candidate_skill.evidence,
-                    job_evidence=job_skill.evidence
-                )
-
-                matched_skills.append(result)
-
+                status = "matched"
+                candidate_evidence = list(candidate_skill.evidence)
             else:
+                related = [
+                    name for name in related_skills(skill_name)
+                    if name.lower() in candidate_skill_lookup
+                ]
+                if related:
+                    status = "partial"
+                    candidate_evidence = [
+                        f"Related skill on CV: {name}" for name in related
+                    ]
+                else:
+                    status = "not_found_in_cv"
+                    candidate_evidence = []
 
-                result = SkillGap(
-                    skill_name=skill_name,
-                    status="not_found_in_cv",
-                    importance=importance,
-                    expected_level=job_skill.expected_level,
-                    priority=priority,
-                    candidate_evidence=[],
-                    job_evidence=job_skill.evidence
-                )
+            gap = SkillGap(
+                skill_name=skill_name,
+                status=status,
+                importance=importance,
+                expected_level=job_skill.expected_level,
+                priority=priority,
+                candidate_evidence=candidate_evidence,
+                job_evidence=job_skill.evidence
+            )
 
-                missing_skills.append(result)
+            if status == "matched":
+                matched_skills.append(gap)
+            elif status == "partial":
+                partial_skills.append(gap)
+            else:
+                missing_skills.append(gap)
+
+            weight = IMPORTANCE_WEIGHT.get(importance, 1.0)
+            weight_total += weight
+            weight_earned += weight * STATUS_CREDIT[status]
+
+        match_score = (
+            round(100 * weight_earned / weight_total, 1)
+            if weight_total else 0.0
+        )
 
         return GapAnalysis(
             total_required_skills=total_required,
             total_preferred_skills=total_preferred,
             matched_skills=matched_skills,
-            missing_skills=missing_skills
+            missing_skills=missing_skills,
+            partial_skills=partial_skills,
+            match_score=match_score
         )
