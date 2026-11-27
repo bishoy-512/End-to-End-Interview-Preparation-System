@@ -6,11 +6,6 @@ from docx import Document
 
 from schemas.candidate import CandidateProfile
 from services.groq_client import generate_structured_output
-import pytesseract
-
-pytesseract.pytesseract.tesseract_cmd = (
-    r"C:\Program Files\Tesseract-OCR\tesseract.exe"
-)
 
 
 PROMPT_PATH = (
@@ -67,41 +62,6 @@ def extract_docx_text(file_path: Path) -> str:
 
 
 # --------------------------------------------------
-# 3. OCR EXTRACTION FOR SCANNED PDFS
-# --------------------------------------------------
-
-def extract_ocr_text(file_path: Path) -> str:
-    """Extract text from scanned PDF pages using OCR."""
-
-    from PIL import Image
-
-    text_parts = []
-
-    with pymupdf.open(file_path) as pdf:
-        for page in pdf:
-
-            pix = page.get_pixmap(
-                matrix=pymupdf.Matrix(2, 2),
-                alpha=False
-            )
-
-            image = Image.frombytes(
-                "RGB",
-                [pix.width, pix.height],
-                pix.samples
-            )
-
-            page_text = pytesseract.image_to_string(
-                image,
-                lang="eng+ara"
-            )
-
-            text_parts.append(page_text)
-
-    return "\n".join(text_parts).strip()
-
-
-# --------------------------------------------------
 # 4. MAIN TEXT EXTRACTION FUNCTION
 # --------------------------------------------------
 
@@ -113,7 +73,7 @@ def extract_cv_text(file_path: str | Path) -> str:
         - PDF
         - DOCX
 
-    Scanned PDFs use OCR as a fallback.
+    Scanned (image-only) PDFs are not supported: there is no OCR.
     """
 
     file_path = Path(file_path)
@@ -129,9 +89,11 @@ def extract_cv_text(file_path: str | Path) -> str:
 
         text = extract_pdf_text(file_path)
 
-        # Use OCR if the PDF contains no meaningful text
         if len(text.strip()) < 50:
-            text = extract_ocr_text(file_path)
+            raise ValueError(
+                "No text found in this PDF. It looks like a scanned image. "
+                "Upload a text-based PDF or a DOCX."
+            )
 
     elif extension == ".docx":
 
